@@ -724,12 +724,19 @@ var selectedPacket = "green";
 //         `
 //       }
 
-      greenPacket =
-      `<iframe src="game.html?packet=green?stage=android" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+      if(isSafari){
+        if(selectedPacket == "green"){
+          window.open("https://pundirmr.github.io/PulseCatchG/game.html?packet=green","_self");
+        }else{
+          window.open("https://pundirmr.github.io/PulseCatchG/game.html?packet=yellow","_self");
+        }
+      }else{
+        greenPacket =
+      `<iframe src="game.html?packet=green" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
     Your browser doesn't support iframes
 </iframe>`
          yellowPacket =
-         `<iframe src="game.html?packet=yellow?stage=android" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+         `<iframe src="game.html?packet=yellow" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
     Your browser doesn't support iframes
 </iframe>`
 
@@ -745,6 +752,9 @@ var selectedPacket = "green";
       document.getElementById("portrait").style.display = "none";
       document.getElementById("bg").style.display = "none";
       document.getElementById("register").style.display = "none";
+      }
+
+
 
      //openFullscreen();
     }
