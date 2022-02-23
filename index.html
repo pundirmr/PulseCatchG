@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta property="og:url"                content="https://pundirmr.github.io/PulseCatch/" />
+  <meta property="og:url"                content="https://pundirmr.github.io/PulseCatchG/" />
   <meta property="og:type"               content="website" />
   <meta property="og:title"              content="Pulse. Come play this game with me." />
   <meta property="og:description"        content="Come play this game with me" />
@@ -584,7 +584,7 @@ function onShare(){
     var encodeUsername = window.btoa(username);
     var encodeScore = window.btoa(userscore);
 
-    const url = 'https://pundirmr.github.io/PulseCatch/playerScore.html?name=' + encodeUsername + '&score=' + encodeScore;
+    const url = 'https://pundirmr.github.io/PulseCatchG/playerScore.html?name=' + encodeUsername + '&score=' + encodeScore;
     const text = "Play Pulse game";
     if (navigator.share) {
       navigator
@@ -595,7 +595,7 @@ function onShare(){
         .catch(console.error);
     } else {
       window.location.replace(
-        `https://pundirmr.github.io/PulseCatch/playerScore.html?name=` + encodeUsername + `&score=` + encodeScore
+        `https://pundirmr.github.io/PulseCatchG/playerScore.html?name=` + encodeUsername + `&score=` + encodeScore
       );
     }
 }
