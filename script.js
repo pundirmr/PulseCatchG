@@ -88,10 +88,7 @@ function setup() {
 }
 
 function mouseDragged(event) {
-console.log("xxxxxxxx :" +event.touches[0].clientX);
-  bowl.position.y=event.touches[0].clientX;
-
-
+  bowl.position.x=event.touches[0].clientX;
 }
 var totalTime = 30;
 var fallingSpeed = 2.5;
@@ -273,16 +270,25 @@ function draw() {
     textSize(20);
     text("GAME OVER",50,300);
     noLoop();
-    parent.window.postMessage("score:" + count , "*");
-    parent.window.postMessage("removetheiframe", "*");
+    if(isSafari){
+      window.open("https://pundirmr.github.io/PulseCatchG/gameOver.html?packet="+userSelectedPacket +"?score="+count,"_self");
+    }else{
+      parent.window.postMessage("score:" + count , "*");
+      parent.window.postMessage("removetheiframe", "*");
+    }
+
   }
   if(life<=0)
     {
       textSize(20);
       text("GAME OVER",50,300);
       noLoop();
-      parent.window.postMessage("score:" + count , "*");
-      parent.window.postMessage("removetheiframe", "*");
+      if(isSafari){
+        window.open("https://pundirmr.github.io/PulseCatchG/gameOver.html?packet="+userSelectedPacket +"?score="+count,"_self");
+      }else{
+        parent.window.postMessage("score:" + count , "*");
+        parent.window.postMessage("removetheiframe", "*");
+      }
     }
     drawSprites();
 }

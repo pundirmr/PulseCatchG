@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta property="og:url"                content="https://pundirmr.github.io/PulseCatchG/" />
+  <meta property="og:type"               content="website" />
+  <meta property="og:title"              content="Pulse. Come play this game with me." />
+  <meta property="og:description"        content="Come play this game with me" />
+  <meta property="og:image"              content="https://i.ibb.co/H71jxDk/Screen-1-min.jpg" />
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="preload" as="image" href="SelectionGreen.png">
+  <link rel="preload" as="image" href="SelectionYellow.png">
+  <link rel="preload" as="image" href="ChooseProduct.jpg">
+  <link rel="preload" as="image" href="ChooseProduct_1.jpg">
+  <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<title>Pulse</title>
+</head>
+
+<body>
+<div id="gameOver" class="gameOver">
+  <div id="gameOverText" class="gameOverText">Game Over</div>
+  <div class="share" type="button" onclick="onShare()" ></div>
+  <div class="playAgain" type="button" onclick="playAgain()" ></div>
+</div>
+</body>
+
+
+<style>
+
+body, html {
+  height: 110%;
+  margin: 0;
+}
+
+body{
+  background-image: url("OnlyBg.png");
+}
+
+label {
+color: white;
+ display:block; 
+}
+
+label:hover {
+ cursor:pointer;
+}
+
+p.small {
+  line-height: 2.5;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(Adventure.ttf);
+}
+  
+.gameOverText {
+    font-family: myFirstFont;
+    padding-left: 12%;
+    padding-top: 31.5%;
+    font-size: 72px;
+    text-shadow: -2px 2px black;
+    outline: none;
+    display: inline-block;
+    color: #d12025;
+}
+
+.gameOverDiv{
+  background-image: url(rR.png);
+    display: inline-block;
+    width: 40%;
+    height: 20%;
+    margin: 26% 0% 0% 6%;
+}
+
+
+.gameOver {
+  /* The image used */
+  background-image: url("GameOver.jpg");
+
+  /* Full height */
+  height: 100%; 
+ 
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain; 
+  z-index: -1; 
+  transform: scale(1.00);
+  display: block;
+  margin: -25px 0px 0px 0px; 
+  transform: scale(0.95);
+}
+
+.button1{
+  height: 33%;
+    width: 49%;
+    position: relative;
+    top: 20%;
+    background-color: transparent;
+}
+
+.button2{
+  height: 33%;
+    width: 49%;
+    position: relative;
+    top: -13%;
+    left: 50%;
+    background-color: transparent;
+}
+
+.button3{
+  height: 10%;
+    width: 100%;
+    position: relative;
+    top: -12%;
+    background-color: transparent;
+}
+
+
+.playButton{
+  height: 18%;
+    width: 100%;
+    position: relative;
+    top: -10%;
+    background-color: transparent;
+}
+
+.registerNow{
+    height: 200%;
+    width: 100%;
+    position: relative;
+    top: 0%;
+    background-color: transparent;
+}
+
+.playAgain {
+    height: 30%;
+    width: 100%;
+    position: relative;
+    top: -13%;
+    background-color: transparent;
+}
+
+.share {
+    height: 24%;
+    width: 100%;
+    position: relative;
+    top: -13%;
+    background-color: transparent;
+}
+
+.portraitInfoButton{
+    height: 20%;
+    width: 80%;
+    margin: -50px -50px;
+    position: relative;
+    top: 40%;
+    left: 25%;
+    border: 1px transparent;
+    background-color: #6e8512;
+    cursor: pointer;
+}
+
+.iFrameStyle{
+display: block;
+z-index: 999999;
+}
+
+
+.modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    }
+    
+.h1{
+  font-size: 1em;
+}
+
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 24rem;
+        border-radius: 0.5rem;
+        width: 70%;
+    height: 70%;
+    overflow-y: scroll;
+    }
+    
+    .close-button {
+        float: right;
+        width: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        background-color: lightgray;
+    }
+    
+    .close-button:hover {
+        background-color: darkgray;
+    }
+    
+    .show-modal {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1.0);
+        display: none;
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    }
+</style>
+<script>
+
+ var params = location.href.split('?')[1].split('&');
+  data = {};
+  for (x in params)
+  {
+  data[params[x].split('=')[0]] = params[x].split('=')[1];
+  }
+  var userSelectedPacket = data.packet;
+  var score = data.score;
+  document.getElementById("gameOverText").innerHTML = "Score : " + score;
+
+
+  addLeaderBoardData(parseInt(score));
+
+
+    function onShare(){
+    const title = 'Pulse';
+
+    var encodeUsername = window.btoa(username);
+    var encodeScore = window.btoa(userscore);
+
+    const url = 'https://pundirmr.github.io/PulseCatchG/playerScore.html?name=' + encodeUsername + '&score=' + encodeScore;
+    const text = "Play Pulse game";
+    if (navigator.share) {
+      navigator
+        .share({ title: `${title}`, url: `${url}`,text: `${text}`})
+        .then(() => {
+          console.log('Thanks for sharing!');
+        })
+        .catch(console.error);
+    } else {
+      window.location.replace(
+        `https://pundirmr.github.io/PulseCatchG/playerScore.html?name=` + encodeUsername + `&score=` + encodeScore
+      );
+    }
+}
+
+function playAgain(){
+    window.open("https://pundirmr.github.io/PulseCatchG/game.html?packet="+userSelectedPacket,"_self");
+}
+</script>
+</html>
