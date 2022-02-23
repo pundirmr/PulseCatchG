@@ -88,9 +88,7 @@ function setup() {
 }
 
 function mouseDragged(event) {
-  fill("white");
-  textSize(15);
-  text("Hello:", 20,80);
+console.log("xxxxxxxx :" +event.touches[0].clientX);
   bowl.position.y=event.touches[0].clientX;
 
 
