@@ -225,18 +225,21 @@ z-index: 999999;
 </style>
 <script>
 
- var params = location.href.split('?')[1].split('&');
-  data = {};
-  for (x in params)
-  {
-  data[params[x].split('=')[0]] = params[x].split('=')[1];
-  }
-  var userSelectedPacket = data.packet;
-  var score = data.score;
+    const queryString = window.location.search;
+    console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+
+    const p = urlParams.get('packet')
+    var userSelectedPacket = p;
+    // shirt
+
+    const s = urlParams.get('score')
+    var score = s;
+
   document.getElementById("gameOverText").innerHTML = "Score : " + score;
 
 
-  addLeaderBoardData(parseInt(score));
+  //addLeaderBoardData(parseInt(score));
 
 
     function onShare(){
