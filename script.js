@@ -91,7 +91,7 @@ function mouseDragged(event) {
   fill("white");
   textSize(15);
   text("Hello:", 20,80);
-  bowl.position.x=event.touches[0].clientX;
+  bowl.position.y=event.touches[0].clientX;
 
 
 }
