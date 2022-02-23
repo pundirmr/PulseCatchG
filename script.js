@@ -88,12 +88,7 @@ function setup() {
 }
 
 function mouseDragged(event) {
-  if(isSafari){
-    bowl.position.y=event.touches[0].clientY;
-  }else{
-    bowl.position.x=event.touches[0].clientX;
-  }
- 
+  bowl.position.x=event.touches[0].clientX;
 }
 var totalTime = 30;
 var fallingSpeed = 2.5;
