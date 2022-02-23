@@ -88,7 +88,12 @@ function setup() {
 }
 
 function mouseDragged(event) {
+  fill("white");
+  textSize(15);
+  text("Hello:", 20,80);
   bowl.position.x=event.touches[0].clientX;
+
+
 }
 var totalTime = 30;
 var fallingSpeed = 2.5;
