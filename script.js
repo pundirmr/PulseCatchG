@@ -60,15 +60,15 @@ function preload() {
 let bgc;
 var initBowl = true;
 function setup() {
-  bgc = 100;
+  
   if(isSafari){
     //ios
-    createCanvas(screen.height - 20,screen.width - 20 );
+    //createCanvas(screen.height - 20,screen.width - 20 );
   }else{
   //android
     createCanvas(screen.width - 20, screen.height - 20);
   }
-  
+  createCanvas(screen.width - 20, screen.height - 20);
   if(isSafari){
     //ios
     bowl = createSprite(screen.height - 70, screen.width - 80, 20,20);
@@ -84,7 +84,7 @@ function setup() {
 
   packetList = [cherry,orange,banana];
   createRandom();
-
+  bgc = 100;
 }
 
 function mouseDragged(event) {
