@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta property="og:url"                content="https://pundirmr.github.io/PulseCatch/" />
+  <meta property="og:type"               content="website" />
+  <meta property="og:title"              content="Pulse. Come play this game with me." />
+  <meta property="og:description"        content="Come play this game with me" />
+  <meta property="og:image"              content="https://i.ibb.co/H71jxDk/Screen-1-min.jpg" />
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="preload" as="image" href="SelectionGreen.png">
+  <link rel="preload" as="image" href="SelectionYellow.png">
+  <link rel="preload" as="image" href="ChooseProduct.jpg">
+  <link rel="preload" as="image" href="ChooseProduct_1.jpg">
+  <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<title>Pulse</title>
+</head>
+
+<body>
+
+  <audio id="myAudio">
+    <source src="a.mp3" type="audio/mpeg">
+  </audio>
+  <div id="bg" class="bg">
+    <div id="yellowPacket" class="selectionYellow"></div>
+    <div id="greenPacket" class="selectionGreen"></div>
+    <div class="container">
+        <div type="button" style="
+            height: 35%;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            background-color: transparent;"
+            onclick="showGameRules()">
+        </div>
+        <div class="button1" type="button" onclick="enableGreenPacket()"></div>
+        <div class="button2" type="button" onclick="enableYellowPacket()"></div>
+        <div class="button3" type="button" onclick="updateSound()"></div>
+        <div class="playButton" type="button"  onclick="displayIframe()"></div> 
+    </div>
+    <div id="gameRules" class="modal show-modal">
+      <div class="modal-content">
+          <h1 style="font-size: 0.85em;">
+            <p style="text-align: center;"><span style="color: #000080;"><strong><u>Game Rules</u></strong></span></p>
+            <p><span style="color: #000080;">&nbsp;1. Select from Pulse Natkare Peanuts (Green) or Pulse Natkare Chana Jor (Yellow).</span></p>
+            <p><span style="color: #000080;">&nbsp;2. Click on Play button to start playing game.</span></p>
+            <p><span style="color: #000080;">&nbsp;3. Gain score by catching as many Pulse Natkare you can in 30 seconds.</span></p>
+            <p><span style="color: #000080;">&nbsp;4. Catch the selected Pulse Natkare to increase score.</span></p>
+            <p><span style="color: #000080;">&nbsp;5. Catching different product will cause game over.</span></p>
+            <p><span style="color: #000080;">&nbsp;6. As time decreases speed of falling will increase, be ready for quick action.</span></p>
+            <p><span style="color: #000080;">&nbsp;7. Catching falling bombs will cause game over.</span></p>
+            <p><span style="color: #000080;">&nbsp;8. Share your score on Instagram, Facebook, WhatsApp and challenge your friends.</span></p>
+          </h1>
+    </div>
+    <span class="close-button" onclick="hideGameRules()" style="
+      margin-top: 6%;
+      margin-right: 7%;
+    ">×</span>
+    </div>
+</div>
+<div id="bg_start" onclick="onFullScreenAndStart()" class="bg_start"></div>
+
+<div id="register"  class="register"  onclick="resetWidth()">
+
+<div id="privacyPolicy" class="modal show-modal">
+    <div class="modal-content">
+        <h1 style="font-size: 0.85em;">
+          <p style="text-align: center;"><span style="color: #000080;"><strong><u>PRIVACY POLICY</u></strong></span></p>
+          <p><span style="color: #000080;">Grab Pulse Natkaare game is for fun &amp; excitement in an understandable and trust-worthy environment. As part of this we are committed to protecting the privacy of our users. The Privacy Policy statement explains what information we collect from our members and users &amp; how we use the information. Personal Information of the User is information that identifies the User to Grab Pulse Natkaare game, as an individual, for this we collect the following:&nbsp;</span></p>
+          <ul>
+          <li><span style="color: #000080;">Name,</span></li>
+          <li><span style="color: #000080;">Age</span></li>
+          <li><span style="color: #000080;">Location</span></li>
+          </ul>
+          <p><span style="color: #000080;">&nbsp;If you do not provide the required information you may not be able to access the features we provide. We will collect personally identifiable information from you only if you voluntarily submit such information to us. You can always refuse to provide personally identifiable information, but by doing so, you may be prevented from engaging with the game. DS Confectionery Products Ltd (Pass Pass Pulse) is the sole owner of the information collected on this site &amp; the above information will be used for internal and promotional purpose, to avoid fraud detection or trend analysis. We will not sell, share, or rent this information to others or use it in ways different from what is disclosed in this statement.</span></p>
+          <p><span style="color: #000080;">&nbsp;We do not disclose your personal information to any third party without first receiving your permission, unless mandated by law or on demand of a statutory authority, in which event we shall inform you of the same before disclosing the information. We may need to disclose your information when required by law. Grab Pulse Natkaare game has the required security to protect the loss, misuse and alteration of information you provide us.</span></p>
+          <p><span style="color: #000080;">By playing this game, you have give your consent to the collection and use of this information by DS Confectionery Products Ltd (Pass Pass Pulse) &amp; its partners and affiliates in future, who shall use the information strictly in terms hereof, or in terms of any amendment hereto. From time to time, we may change our methods of collecting information and modify our privacy policy. We will post those changes on this page so that you are always aware of what information we collect, how we use it, and under what circumstances we disclose it.</span></p>
+          <p><span style="color: #000080;">We and each of our representatives, officers, directors, contractors and agents shall not be responsible for the authenticity of the information that you provide to us. You shall indemnify and hold us harmless and each of our officers, directors, contractors, agents or any third party relying on the information provided by you in the event:-(i) you are in breach of this policy including this provision and the immediately preceding provision; and (ii) any suit, action or claim is brought against us by any third party with respect to the information provided by you to us.</span></p>
+          <p><span style="color: #000080;">Notwithstanding anything to the contrary in this Policy, we may preserve or disclose your information if we believe that it is reasonably necessary to comply with a law, regulation or legal request; to protect the safety of any person; to address fraud, security or technical issues; or to protect Pulse Natkaare rights or property. However, nothing in this Privacy Policy is intended to limit any legal defenses or objections that you may have against a third party including a government&rsquo;s request, to disclose your information. Grab Pulse Natkaare game uses reasonable organizational, technical and administrative measures to protect information under our control.</span></p>
+          <p><span style="color: #000080;">However, no data transmission over the Internet or data storage system is guaranteed to be 100% secure. If users have reason to believe that their interaction with Grab Pulse Natkaare game features are no longer secure (for example, if they feel that the security of any account they might have with Grab Pulse Natkaare game has been compromised), it is their duty to immediately notify DS Confectionery Products Ltd (Pass Pass Pulse) of the problem by contacting the customer service personnel and DS Confectionery Products Ltd (Pass Pass Pulse) shall take necessary action as DS Confectionery Products Ltd (Pass Pass Pulse)&nbsp; may deem fit, under the circumstances. Pass Pass Pulse shall not be held responsible for any activity in your account which results from your failure to keep your personal or other Information secure.</span></p>
+          <p><span style="color: #000080;">Once you register with our services, you are made available with necessary tools and&nbsp;account settings&nbsp;to access or change the personal information you have provided to us, pursuant to your registration, which are associated with your account.</span></p>
+          <p><span style="color: #000080;">We may amend or revise this Privacy Policy from time to time. The most current version of the policy will govern our use of your information and your use of the services. By continuing to access or use the services after such changes becoming effective, you agree to be bound by the revised/amended Privacy Policy.</span></p>
+          <p><span style="color: #000080;">This Privacy Policy shall be governed by the laws of India. &nbsp;All disputes, claims, causes relating to and arising out of this Privacy Policy shall be subject to the exclusive jurisdiction of the courts at New Delhi.</span></p>
+          <p><span style="color: #000080;">For any query you can write to&nbsp;confectionery@dsgroup.com.</span></p>
+        </h1>
+</div>
+<span class="close-button" onclick="hideModel()" style="
+    margin-top: 6%;
+    margin-right: 7%;
+">×</span>
+</div>
+
+
+  <form id="regForm">
+    <p class="small">
+    <input id="regName" type="text" class="form-style"   placeholder="NAME" maxlength = "7" onclick="updatewidth()" onblur="xblur()" 
+    oninput="javascript: if(!isNaN(this.value)) this.value = '';">
+    <input id="regAge" class="form-style"   placeholder="AGE" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+    type = "number"
+    maxlength = "3" onclick="updatewidth()" onblur="xblur()">
+    <!-- <input id="regEmail" type="email" class="form-style"   placeholder="E-MAIL"> -->
+    <input id="regNumber" class="form-style" placeholder="MOBILE NUMBER" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+    type = "number"
+    maxlength = "10" onclick="updatewidth()" onblur="xblur()">
+    <input id="regCity" type="text" class="form-style"   placeholder="CITY" maxlength = "10" onclick="updatewidth()" onblur="xblur()"
+    oninput="javascript: if(!isNaN(this.value)) this.value = '';">
+  
+
+    <label style="margin: -6px 0px 0px 0px;"><input type="checkbox" style="width: 15px !important;height: 15px !important;" id="privacyCheck" onclick="privacyChecked()" checked>I accept the <a href="#" id="myBtn" style="color: white;">Terms and Conditions</a></label>
+  </p>
+    
+    
+  </form>
+  <div class="registerNow" type="button" onclick="doRegister()" ></div>
+</div>
+
+<div id="gameOver" class="gameOver">
+  <div id="gameOverText" class="gameOverText">Game Over</div>
+  <div class="share" type="button" onclick="onShare()" ></div>
+  <div class="playAgain" type="button" onclick="playAgain()" ></div>
+
+</div>
+<div id="portrait" class="portrait"></div>
+
+<div id="iframeDisplay" class="iFrameStyle"></div>  
+<div id="packetValue"></div>  
+
+</body>
+
+
+<style>
+
+body, html {
+  height: 110%;
+  margin: 0;
+}
+
+body{
+  background-image: url("OnlyBg.png");
+}
+
+label {
+color: white;
+ display:block; 
+}
+
+label:hover {
+ cursor:pointer;
+}
+
+p.small {
+  line-height: 2.5;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(Adventure.ttf);
+}
+  
+
+input {
+  width: 202%;
+  height: 102%;
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0%;
+}
+
+form{
+  /* margin-top: 16.45%;
+    margin-left: 25%; */
+    display: inline-grid;
+    z-index: 20;    margin: 16% 0% 0% 25%;
+}
+
+.form-style {
+  padding: 13px 20px;
+    height: 5px;
+    width: 58%;
+    font-family: myFirstFont;
+    font-weight: 500;
+    border-radius: 0px;
+    font-size: 22px;
+    text-shadow: -2px 2px black;
+    line-height: 22px;
+    letter-spacing: 0.5px;
+    outline: none;
+    color: #e7e7e7;
+    background-color: #343434;
+    border: none;
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+    box-shadow: 0 4px 8px 0 rgb(21 21 21 / 20%);
+}
+.form-style:focus,
+.form-style:active {
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
+
+.form-s {
+  padding: 13px 20px;
+    height: 5px;
+    width: 58%;
+    font-family: myFirstFont;
+    font-weight: 500;
+    border-radius: 0px;
+    font-size: 22px;
+    text-shadow: -2px 2px black;
+    line-height: 22px;
+    letter-spacing: 0.5px;
+    outline: none;
+    color: #e7e7e7;
+    background-color: #343434;
+    border: none;
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+    box-shadow: 0 4px 8px 0 rgb(21 21 21 / 20%);
+}
+.form-s:focus,
+.form-s:active {
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
+
+
+
+.portrait {
+  /* The image used */
+  background-image: url("OnlyBg.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  z-index: 50;
+}
+
+.bg_start {
+  /* The image used */
+  background-image: url("Intro.jpg");
+
+  /* Full height */
+  height: 90%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  z-index: -1; margin: -10px 0px 0px 0px;
+  transform: scale(0.9);
+}
+
+
+.bg {
+  /* The image used */
+  background-image: url("ChooseProduct.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: none;
+  z-index: -1; 
+  margin: -20px 0px 0px 0px;
+}
+
+.gameOverText {
+    font-family: myFirstFont;
+    padding-left: 12%;
+    padding-top: 31.5%;
+    font-size: 72px;
+    text-shadow: -2px 2px black;
+    outline: none;
+    display: inline-block;
+    color: #d12025;
+}
+
+.gameOverDiv{
+  background-image: url(rR.png);
+    display: inline-block;
+    width: 40%;
+    height: 20%;
+    margin: 26% 0% 0% 6%;
+}
+
+.register {
+  /* The image used */
+  background-image: url("Registration.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: none;
+  z-index: -1; 
+  margin: -20px 0px 0px 0px;
+}
+
+.gameOver {
+  /* The image used */
+  background-image: url("GameOver.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: none;
+  z-index: -1; 
+  margin: -25px 0px 0px 0px; 
+  transform: scale(0.80);
+}
+
+
+
+.bg_soundOff {
+  /* The image used */
+  background-image: url("ChooseProduct_1.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: none;
+  z-index: -1; 
+  margin: -20px 0px 0px 0px;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    z-index: 2; margin: 78px 0px 0px 0px;
+}
+
+.selectionGreen {
+    background-image: url(SelectionGreen.png);
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    z-index: 2; margin: 45px 0px 0px 0px;
+}
+
+.selectionYellow {
+    background-image: url(SelectionYellow.png);
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+    position: absolute;
+    z-index: 2; margin: 45px 0px 0px 0px;
+}
+
+.button1{
+  height: 33%;
+    width: 49%;
+    position: relative;
+    top: 20%;
+    background-color: transparent;
+}
+
+.button2{
+  height: 33%;
+    width: 49%;
+    position: relative;
+    top: -13%;
+    left: 50%;
+    background-color: transparent;
+}
+
+.button3{
+  height: 10%;
+    width: 100%;
+    position: relative;
+    top: -12%;
+    background-color: transparent;
+}
+
+
+.playButton{
+  height: 18%;
+    width: 100%;
+    position: relative;
+    top: -10%;
+    background-color: transparent;
+}
+
+.registerNow{
+    height: 200%;
+    width: 100%;
+    position: relative;
+    top: 0%;
+    background-color: transparent;
+}
+
+.playAgain {
+    height: 30%;
+    width: 100%;
+    position: relative;
+    top: -13%;
+    background-color: transparent;
+}
+
+.share {
+    height: 24%;
+    width: 100%;
+    position: relative;
+    top: -13%;
+    background-color: transparent;
+}
+
+.portraitInfoButton{
+    height: 20%;
+    width: 80%;
+    margin: -50px -50px;
+    position: relative;
+    top: 40%;
+    left: 25%;
+    border: 1px transparent;
+    background-color: #6e8512;
+    cursor: pointer;
+}
+
+.iFrameStyle{
+display: block;
+z-index: 999999;
+}
+
+
+.modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    }
+    
+.h1{
+  font-size: 1em;
+}
+
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 24rem;
+        border-radius: 0.5rem;
+        width: 70%;
+    height: 70%;
+    overflow-y: scroll;
+    }
+    
+    .close-button {
+        float: right;
+        width: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        background-color: lightgray;
+    }
+    
+    .close-button:hover {
+        background-color: darkgray;
+    }
+    
+    .show-modal {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1.0);
+        display: none;
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    }
+</style>
+
+<script>
+var elem = document.documentElement;
+var canRegister = true;
+function showModel(){
+  document.getElementById("privacyPolicy").style.display = "block";
+}
+
+function hideModel(){
+  document.getElementById("privacyPolicy").style.display = "none";
+
+}
+
+function showGameRules(){
+  console.log('show rules');
+  
+  document.getElementById("gameRules").style.display = "block";
+  document.getElementById("gameRules").style.zIndex = "100";
+
+}
+
+function hideGameRules(){
+  console.log('hide rules');
+  document.getElementById("gameRules").style.display = "none";
+}
+
+hideModel();
+
+var btn = document.getElementById("myBtn");
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  showModel();
+}
+
+function privacyChecked() {
+  // Get the checkbox
+  var checkBox = document.getElementById("privacyCheck");
+  console.log(checkBox.checked);
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    canRegister = true;
+  } else {
+    canRegister = false;
+  }
+}
+
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+    }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (elem.exitFullscreen) {
+    elem.exitFullscreen();
+  } else if (elem.webkitExitFullscreen) { /* Safari */
+    elem.webkitExitFullscreen();
+  } else if (elem.msExitFullscreen) { /* IE11 */
+    elem.msExitFullscreen();
+  }
+}
+//playerScore.html?name=Prithu&score=50
+function onShare(){
+    const title = 'Pulse';
+
+    var encodeUsername = window.btoa(username);
+    var encodeScore = window.btoa(userscore);
+
+    const url = 'https://pundirmr.github.io/PulseCatch/playerScore.html?name=' + encodeUsername + '&score=' + encodeScore;
+    const text = "Play Pulse game";
+    if (navigator.share) {
+      navigator
+        .share({ title: `${title}`, url: `${url}`,text: `${text}`})
+        .then(() => {
+          console.log('Thanks for sharing!');
+        })
+        .catch(console.error);
+    } else {
+      window.location.replace(
+        `https://pundirmr.github.io/PulseCatch/playerScore.html?name=` + encodeUsername + `&score=` + encodeScore
+      );
+    }
+}
+
+var isLandscape = false;
+
+var previousOrientation = window.orientation;
+var checkOrientation = function(){
+
+    if(window.orientation !== previousOrientation){
+        previousOrientation = window.orientation;
+        // orientation changed, do your magic here
+        console.log(window.orientation);
+
+        if(window.orientation == "0"){
+
+          closeFullscreen();
+
+          window.scrollTo(0,0);
+          isLandscape = false;
+
+          document.getElementById("bg").style.display = "none";
+          document.getElementById("portrait").style.display = "block";
+          document.getElementById("iframeDisplay").style.display = "none";
+          document.getElementById("bg_start").style.display = "none";
+          pauseAudio();
+
+        }else{
+                
+          openFullscreen();
+          window.scrollTo(0,1);
+          isLandscape = true;
+          document.getElementById("bg_start").style.display = "block";
+
+          document.getElementById("bg").style.display = "none";
+          document.getElementById("portrait").style.display = "none";
+          document.getElementById("iframeDisplay").style.display = "none";
+
+        }
+        
+    }
+};
+
+window.addEventListener("resize", checkOrientation, false);
+window.addEventListener("orientationchange", checkOrientation, false);
+
+
+
+// (optional) Android doesn't always fire orientationChange on 180 degree turns
+setInterval(checkOrientation, 2000);
+
+window.onscroll = function(){
+    if(isLandscape){
+        window.scrollTo(0,1);
+    }
+};
+
+var selectedPacket = "green";
+    var sound = true;
+    
+    function enableGreenPacket() {
+      document.getElementById("yellowPacket").style.display = "none";
+      document.getElementById("greenPacket").style.display = "block";
+      selectedPacket = "green";
+      console.log(selectedPacket);
+    }
+    function enableYellowPacket() {
+      document.getElementById("yellowPacket").style.display = "block";
+      document.getElementById("greenPacket").style.display = "none";
+      selectedPacket = "yellow";
+      console.log(selectedPacket);
+    }
+    function updateSound() {
+      //bg_soundOff
+        sound = !sound;
+        if(sound){
+            document.getElementById("bg").className  = "bg";
+            playAudio();
+        }else{
+            document.getElementById("bg").className = "bg_soundOff";
+            pauseAudio();
+        }
+        console.log("sound:" + sound);
+    }
+
+    function onFullScreenAndStart(){
+      openFullscreen();
+      document.getElementById("bg_start").style.display = "none";
+      document.getElementById("portrait").style.display = "none";
+      document.getElementById("bg").style.display = "none";
+      document.getElementById("register").style.display = "block";
+      isLandscape = true;
+    }
+
+    function displayIframe() {
+      isGameRunning = true;
+
+      var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+               navigator.userAgent &&
+               navigator.userAgent.indexOf('CriOS') == -1 &&
+               navigator.userAgent.indexOf('FxiOS') == -1;
+
+      var greenPacket = "";
+      var yellowPacket = "";
+
+      if(isSafari){
+        greenPacket =         `
+        <iframe src="game.html?packet=green?stage=ios" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+    Your browser doesn't support iframes
+</iframe>
+        `
+         yellowPacket =         `
+        <iframe src="game.html?packet=yellow?stage=ios" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+    Your browser doesn't support iframes
+</iframe>
+        `
+      }else{
+         greenPacket =         `
+        <iframe src="game.html?packet=green?stage=android" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+    Your browser doesn't support iframes
+</iframe>
+        `
+         yellowPacket =         `
+        <iframe src="game.html?packet=yellow?stage=android" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+    Your browser doesn't support iframes
+</iframe>
+        `
+      }
+
+        document.getElementById("iframeDisplay").style.display = "block";
+        document.getElementById("packetValue").innerHTML = selectedPacket;
+
+        if(selectedPacket == "green"){
+          document.getElementById("iframeDisplay").innerHTML = greenPacket;
+        }else{
+          document.getElementById("iframeDisplay").innerHTML = yellowPacket;
+        }
+        document.getElementById("bg_start").style.display = "none";
+      document.getElementById("portrait").style.display = "none";
+      document.getElementById("bg").style.display = "none";
+      document.getElementById("register").style.display = "none";
+
+     //openFullscreen();
+    }
+
+    function receiveMessage(event){
+    if (event.data=="removetheiframe"){
+        var element = document.getElementById('iframeDisplay');
+        element.innerHTML = "";//.parentNode.removeChild(element);        
+    }
+    if(event.data.includes("score")){
+      var score = event.data.split(":");
+
+      document.getElementById("gameOverText").innerHTML = "Score : " + score[1];
+      userscore =  score[1];
+      addLeaderBoardData(parseInt(userscore));
+
+      document.getElementById("gameOver").style.display = "block";
+      pauseAudio();
+    }
+
+    if(event.data.includes("openGame")){
+      document.getElementById("bg_start").style.display = "none";
+      document.getElementById("portrait").style.display = "none";
+      document.getElementById("bg").style.display = "block";
+      document.getElementById("register").style.display = "none";
+
+      playAudio();
+    }
+
+    if(event.data.includes("gameOver")){
+      
+    }
+}
+window.addEventListener("message", receiveMessage, false);
+
+function playAgain(){
+  document.getElementById("gameOver").style.display = "none";
+  displayIframe();
+
+  if(sound){
+            playAudio();
+  }else{
+            pauseAudio();
+  }
+}
+
+
+window.tdiff = []; fred = function(a,b){return a-b;};
+window.document.onload = function(e){ 
+  assumePortraitAndActivePanels();
+}
+window.onload = function(e){ 
+  assumePortraitAndActivePanels();
+}
+
+function assumePortraitAndActivePanels(){
+  closeFullscreen();
+
+window.scrollTo(0,0);
+isLandscape = false;
+
+document.getElementById("bg").style.display = "none";
+document.getElementById("portrait").style.display = "block";
+document.getElementById("iframeDisplay").style.display = "none";
+document.getElementById("bg_start").style.display = "none";
+}
+
+function doRegister(){
+      console.log('register');
+      if(!canRegister) return;
+      openFullscreen();
+      console.log(document.getElementById("regName").value);
+      console.log(document.getElementById("regAge").value);
+      // console.log(document.getElementById("regEmail").value);
+      console.log(document.getElementById("regNumber").value);
+      console.log(document.getElementById("regCity").value);
+
+      addRegisterData(document.getElementById("regName").value,
+       document.getElementById("regName").value,
+       document.getElementById("regAge").value,
+      //  document.getElementById("regEmail").value,
+      document.getElementById("regCity").value);
+
+      document.getElementById("regName").value = "";
+      document.getElementById("regAge").value = "";
+      // document.getElementById("regEmail").value = "";
+      document.getElementById("regNumber").value = "";
+      document.getElementById("regCity").value = "";
+
+      openLeaderBoardPage();
+    }
+
+    function openLeaderBoardPage(){
+      document.getElementById("bg_start").style.display = "none";
+      document.getElementById("portrait").style.display = "none";
+      document.getElementById("bg").style.display = "none";
+      document.getElementById("register").style.display = "none";
+      
+      document.getElementById("iframeDisplay").style.display = "block";
+var greenPacket = `<iframe src="leaderBoard.html" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+    Your browser doesn't support iframes
+</iframe>`;
+ document.getElementById("iframeDisplay").innerHTML = greenPacket;
+
+
+    }
+
+var username, userage,useremail,usernumber,usercity,userscore;
+// Create our Firebase reference
+var scoreListRef = new Firebase('https://pulse-68b64-default-rtdb.firebaseio.com/');
+
+// function addRegisterData(name,age,email,number,city){
+  function addRegisterData(name,age,number,city){
+
+  username = name;
+  userage = age;
+  // useremail=email;
+  usernumber=number;
+  usercity =city;
+  
+      var userScoreRef = scoreListRef.child(name);
+
+      // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
+      // userScoreRef.setWithPriority({ name:name, age:age, email:email, number:number,city:city, score:0 }, name);
+    userScoreRef.setWithPriority({ name:username, age:age, number:number,city:city, score:0 }, username);
+
+}
+
+function addLeaderBoardData(_score){
+  if(username=="") {username="user"}
+  var userScoreRef = scoreListRef.child(username);
+
+  // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
+  userScoreRef.setWithPriority({ name:username, age:userage, number:usernumber,city:usercity, score:_score}, _score);
+}
+
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+  x.play(); 
+} 
+
+function pauseAudio() { 
+  x.pause(); 
+} 
+
+// $(function() {
+//     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+//     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+//     // $("html, body").css({"width":w,"height":h});
+//     console.log("w:" + w);
+//     console.log("h:" + h);
+// });
+
+function updatewidth(){
+    document.getElementById("regForm").style.margin = '0% 0% 0% 25%';
+    xfocus();
+}
+
+function resetWidth(){
+  //document.getElementById("regForm").style.margin = '16% 0% 0% 25%';
+}
+
+function xfocus() {
+    setTimeout(function() {
+      height_old = window.innerHeight;
+      window.addEventListener('resize', xresize);
+    }, 500);
+  }
+  function xresize() {
+    height_new = window.innerHeight;
+    var diff = Math.abs(height_old - height_new);
+    var perc = Math.round((diff / height_old) * 100);
+    if (perc > 50)
+      xblur();
+  }
+  function xblur() {
+    window.removeEventListener('resize', xresize);
+    document.getElementById("regForm").style.margin = '16% 0% 0% 25%';
+  }
+
+</script>
+</html>
