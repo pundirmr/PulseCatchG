@@ -63,12 +63,12 @@ function setup() {
   
   if(isSafari){
     //ios
-    //createCanvas(screen.height - 20,screen.width - 20 );
+    createCanvas(screen.height - 20,screen.width - 20 );
   }else{
   //android
     createCanvas(screen.width - 20, screen.height - 20);
   }
-  createCanvas(screen.width - 20, screen.height - 20);
+  
   if(isSafari){
     //ios
     bowl = createSprite(screen.height - 70, screen.width - 80, 20,20);
@@ -88,7 +88,12 @@ function setup() {
 }
 
 function mouseDragged(event) {
-  bowl.position.x=event.touches[0].clientX;
+  if(isSafari){
+    bowl.position.y=event.touches[0].clientY;
+  }else{
+    bowl.position.x=event.touches[0].clientX;
+  }
+ 
 }
 var totalTime = 30;
 var fallingSpeed = 2.5;
