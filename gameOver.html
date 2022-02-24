@@ -19,12 +19,13 @@
 </head>
 
 <body>
+<div id="portrait" class="portrait"></div>
 <div id="gameOver" class="gameOver">
   <div id="gameOverText" class="gameOverText">Game Over</div>
   <div class="share" type="button" onclick="onShare()" ></div>
   <div class="playAgain" type="button" onclick="playAgain()" ></div>
 </div>
-<div id="portrait" class="portrait"></div>
+
 </body>
 
 
@@ -291,7 +292,7 @@ function playAgain(){
 
 
 <script>
-
+var elem = document.documentElement;
     var isSafari;
   
     isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
