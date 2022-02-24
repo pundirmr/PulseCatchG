@@ -162,7 +162,9 @@ function draw() {
   //background(bgc);
   background(backgroundImage);
   //Generate random greenPacket sprite
-
+  if(isSafari){
+    window.scrollTo(0,1);
+  }
   for (var i = 0; i < bombPackets.length; i++) {
     if(bombPackets[i]!=null){
       bombPackets[i].position.y = bombPackets[i].position.y + fallingSpeed;
