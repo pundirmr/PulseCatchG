@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta property="og:url"                content="https://pundirmr.github.io/PulseCatchG/" />
+  <meta property="og:type"               content="website" />
+  <meta property="og:title"              content="Pulse. Come play this game with me." />
+  <meta property="og:description"        content="Come play this game with me" />
+  <meta property="og:image"              content="https://i.ibb.co/H71jxDk/Screen-1-min.jpg" />
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<title>Pulse</title>
+</head>
+
+<body>
+    <div id="div1"> 
+        <img src="GameOver.jpg"/> 
+      </div> 
+
+      <div id="gameOverText" class="gameOverText">Game Over</div>
+      <div class="playAgain" type="button" onclick="playAgain()" ></div>
+      <div class="share" type="button" onclick="share()" ></div>
+</body>
+
+<style>
+    div
+    {
+      width:100%;
+      height:100px;
+    }
+    img
+    {
+      width:100%;
+    }
+#div1 {
+    z-index: 10;
+    position: relative;
+}
+@font-face {
+    font-family: myFirstFont;
+    src: url(Adventure.ttf);
+}
+  
+    #gameOverText
+    {
+    font-family: myFirstFont;
+    position: relative;  
+    margin-top: 19%;
+
+    z-index: 20;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 10%;
+    width: 47%;
+
+    font-size: 72px;
+    text-shadow: -2px 2px black;
+    outline: none;
+    display: inline-block;
+    color: #d12025;
+    }
+
+    .playAgain {
+    width: 100%;
+    position: relative;
+    margin-top: 9%;
+    background-color: #ff0e0e;
+    z-index: 999;
+    }   
+    .share {
+    width: 100%;
+    position: relative;
+    margin-top: -21%;
+    background-color: #0eff7a;
+    z-index: 999;
+    }  
+
+
+
+</style>
+
+<script>
+        var elem = document.documentElement;
+    // Create our Firebase reference
+        var scoreListRef = new Firebase('https://pulse-68b64-default-rtdb.firebaseio.com/');
+    
+        const queryString = window.location.search;
+        console.log(queryString);
+        const urlParams = new URLSearchParams(queryString);
+    
+        const p = urlParams.get('packet')
+        var userSelectedPacket = p;
+        // shirt
+    
+        const s = urlParams.get('score')
+        var score = s;
+    
+      document.getElementById("gameOverText").innerHTML = "Score : " + score;
+    
+      function addLeaderBoardData(_score){
+            var username =  localStorage.getItem("name");
+            var userage =  localStorage.getItem("age");
+            var usernumber =  localStorage.getItem("number");
+            var usercity =  localStorage.getItem("city");
+    
+            console.log('add leaderboard data:');
+            console.log('username:' + username);
+            console.log('userage:' + userage);
+            console.log('usernumber:' + usernumber);
+            console.log('usercity:' + usercity);
+    
+            var userScoreRef = scoreListRef.child(username);
+            // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
+            userScoreRef.setWithPriority({ name:username, age:userage, number:usernumber,city:usercity, score:_score}, _score);
+        }
+    
+      addLeaderBoardData(parseInt(score));
+    
+    
+    function onShare(){
+        const title = 'Pulse';
+    
+        var encodeUsername = window.btoa(username);
+        var encodeScore = window.btoa(userscore);
+    
+        const url = 'https://pundirmr.github.io/PulseCatchG/playerScore.html?name=' + encodeUsername + '&score=' + encodeScore;
+        const text = "Play Pulse game";
+        if (navigator.share) {
+          navigator
+            .share({ title: `${title}`, url: `${url}`,text: `${text}`})
+            .then(() => {
+              console.log('Thanks for sharing!');
+            })
+            .catch(console.error);
+        } else {
+          window.location.replace(
+            `https://pundirmr.github.io/PulseCatchG/playerScore.html?name=` + encodeUsername + `&score=` + encodeScore
+          );
+        }
+    }
+    
+    function playAgain(){
+        window.open("https://pundirmr.github.io/PulseCatchG/game.html?packet="+userSelectedPacket,"_self");
+    }
+
+
+        var isSafari;
+      
+        isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+        navigator.userAgent &&
+        navigator.userAgent.indexOf('CriOS') == -1 &&
+        navigator.userAgent.indexOf('FxiOS') == -1;
+      
+        window.addEventListener("message", function( e ) {
+          console.log('oriitn');
+          window.orientation = e.data.orientation;
+        }, false);
+      
+      
+      if(isSafari){
+      
+          function openFullscreen() {
+            if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+            }
+          }
+      
+        /* Close fullscreen */
+        function closeFullscreen() {
+          if (elem.exitFullscreen) {
+            elem.exitFullscreen();
+          } else if (elem.webkitExitFullscreen) { /* Safari */
+            elem.webkitExitFullscreen();
+          } else if (elem.msExitFullscreen) { /* IE11 */
+            elem.msExitFullscreen();
+          }
+        }
+          var isLandscape = false;
+      
+          var previousOrientation = window.orientation;
+          var checkOrientation = function(){
+      
+            if(window.orientation !== previousOrientation){
+                previousOrientation = window.orientation;
+                // orientation changed, do your magic here
+                console.log(window.orientation);
+      
+                if(window.orientation == "0"){
+      
+                  closeFullscreen();
+      
+                  window.scrollTo(0,0);
+                  isLandscape = false;
+                  document.getElementById("portrait").style.display = "block";
+      
+                }
+                else
+                {              
+                  openFullscreen();
+      
+                  window.scrollTo(0,1);
+                  isLandscape = true;
+                  document.getElementById("portrait").style.display = "none";
+                }
+                
+            }
+        };
+    
+      }
+    
+        window.addEventListener("resize", checkOrientation, false);
+        window.addEventListener("orientationchange", checkOrientation, false);
+      
+        // (optional) Android doesn't always fire orientationChange on 180 degree turns
+        setInterval(checkOrientation, 2000);
+      
+        window.onscroll = function(){
+            if(isLandscape){
+                window.scrollTo(0,1);
+            }
+        };
+    
+      </script>
+
+</html>

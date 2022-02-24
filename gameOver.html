@@ -243,22 +243,21 @@ z-index: 999999;
   document.getElementById("gameOverText").innerHTML = "Score : " + score;
 
   function addLeaderBoardData(_score){
+        var username =  localStorage.getItem("name");
+        var userage =  localStorage.getItem("age");
+        var usernumber =  localStorage.getItem("number");
+        var usercity =  localStorage.getItem("city");
 
-    var username =  localStorage.getItem("name");
-    var userage =  localStorage.getItem("age");
-    var usernumber =  localStorage.getItem("number");
-    var usercity =  localStorage.getItem("city");
+        console.log('add leaderboard data:');
+        console.log('username:' + username);
+        console.log('userage:' + userage);
+        console.log('usernumber:' + usernumber);
+        console.log('usercity:' + usercity);
 
-    console.log('add leaderboard data:');
-    console.log('username:' + username);
-    console.log('userage:' + userage);
-    console.log('usernumber:' + usernumber);
-    console.log('usercity:' + usercity);
-
-    var userScoreRef = scoreListRef.child(username);
-    // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-    userScoreRef.setWithPriority({ name:username, age:userage, number:usernumber,city:usercity, score:_score}, _score);
-}
+        var userScoreRef = scoreListRef.child(username);
+        // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
+        userScoreRef.setWithPriority({ name:username, age:userage, number:usernumber,city:usercity, score:_score}, _score);
+    }
 
   addLeaderBoardData(parseInt(score));
 
