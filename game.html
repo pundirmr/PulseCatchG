@@ -13,7 +13,7 @@
 
 
 <script>
-
+  var elem = document.documentElement;
   var isSafari;
 
   isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
@@ -79,8 +79,9 @@ if(isSafari){
           
       }
   };
+}
 
-  window.addEventListener("resize", checkOrientation, false);
+window.addEventListener("resize", checkOrientation, false);
   window.addEventListener("orientationchange", checkOrientation, false);
 
   // (optional) Android doesn't always fire orientationChange on 180 degree turns
@@ -91,7 +92,6 @@ if(isSafari){
           window.scrollTo(0,1);
       }
   };
-}
 
 </script>
 
@@ -115,7 +115,7 @@ if(isSafari){
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
-  z-index: 50;
+  z-index: 99999999999;
 }
 
   </style>
