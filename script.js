@@ -261,11 +261,11 @@ function draw() {
   //Display Score and Life
   fill("white");
   textSize(15);
-  text("Score:" + count, 20,50);
+  text("Score:" + count, 30,60);
 
   fill("white");
   textSize(15);
-  text("Time:" + totalTime, 20,80);
+  text("Time:" + totalTime, 30,90);
 
   //text("LIFE:"+life,500,40);
   //Game Over condition

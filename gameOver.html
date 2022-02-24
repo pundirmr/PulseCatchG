@@ -24,6 +24,7 @@
   <div class="share" type="button" onclick="onShare()" ></div>
   <div class="playAgain" type="button" onclick="playAgain()" ></div>
 </div>
+<div id="portrait" class="portrait"></div>
 </body>
 
 
@@ -252,7 +253,7 @@ z-index: 999999;
     console.log('userage:' + userage);
     console.log('usernumber:' + usernumber);
     console.log('usercity:' + usercity);
-    
+
     var userScoreRef = scoreListRef.child(username);
     // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
     userScoreRef.setWithPriority({ name:username, age:userage, number:usernumber,city:usercity, score:_score}, _score);
@@ -287,4 +288,105 @@ function playAgain(){
     window.open("https://pundirmr.github.io/PulseCatchG/game.html?packet="+userSelectedPacket,"_self");
 }
 </script>
+
+
+<script>
+
+    var isSafari;
+  
+    isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+    navigator.userAgent &&
+    navigator.userAgent.indexOf('CriOS') == -1 &&
+    navigator.userAgent.indexOf('FxiOS') == -1;
+  
+    window.addEventListener("message", function( e ) {
+      console.log('oriitn');
+      window.orientation = e.data.orientation;
+    }, false);
+  
+  
+  if(isSafari){
+  
+      function openFullscreen() {
+        if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+        }
+      }
+  
+    /* Close fullscreen */
+    function closeFullscreen() {
+      if (elem.exitFullscreen) {
+        elem.exitFullscreen();
+      } else if (elem.webkitExitFullscreen) { /* Safari */
+        elem.webkitExitFullscreen();
+      } else if (elem.msExitFullscreen) { /* IE11 */
+        elem.msExitFullscreen();
+      }
+    }
+      var isLandscape = false;
+  
+      var previousOrientation = window.orientation;
+      var checkOrientation = function(){
+  
+        if(window.orientation !== previousOrientation){
+            previousOrientation = window.orientation;
+            // orientation changed, do your magic here
+            console.log(window.orientation);
+  
+            if(window.orientation == "0"){
+  
+              closeFullscreen();
+  
+              window.scrollTo(0,0);
+              isLandscape = false;
+              document.getElementById("portrait").style.display = "block";
+  
+            }
+            else
+            {              
+              openFullscreen();
+  
+              window.scrollTo(0,1);
+              isLandscape = true;
+              document.getElementById("portrait").style.display = "none";
+            }
+            
+        }
+    };
+  
+    window.addEventListener("resize", checkOrientation, false);
+    window.addEventListener("orientationchange", checkOrientation, false);
+  
+    // (optional) Android doesn't always fire orientationChange on 180 degree turns
+    setInterval(checkOrientation, 2000);
+  
+    window.onscroll = function(){
+        if(isLandscape){
+            window.scrollTo(0,1);
+        }
+    };
+  }
+  
+  </script>
+  <style>
+    .portrait {
+  /* The image used */
+  background-image: url("OnlyBg.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  z-index: 50;
+}
+
+  </style>
 </html>
