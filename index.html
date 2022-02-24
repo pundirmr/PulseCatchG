@@ -772,7 +772,8 @@ var selectedPacket = "green";
       userscore =  score[1];
       addLeaderBoardData(parseInt(userscore));
 
-      document.getElementById("gameOver").style.display = "block";
+      //document.getElementById("gameOver").style.display = "block";
+      window.open("https://pundirmr.github.io/PulseCatchG/gameOver.html?packet="+selectedPacket +"&score="+userscore,"_self");
       pauseAudio();
     }
 
