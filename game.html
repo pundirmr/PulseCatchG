@@ -40,23 +40,6 @@
 <script>
   var elem = document.documentElement;
 
-  var x = document.getElementById("myAudio"); 
-
-  function playAudio() { 
-    x.play(); 
-  } 
-
-  function pauseAudio() { 
-    x.pause(); 
-  } 
-
-  var sound =  localStorage.getItem("sound");
-  if(sound=="on"){
-    playAudio();
-  }else{
-    pauseAudio();
-  }
-
   var isSafari;
 
   isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
@@ -71,6 +54,23 @@
 
 
 if(isSafari){
+
+      var x = document.getElementById("myAudio"); 
+
+    function playAudio() { 
+      x.play(); 
+    } 
+
+    function pauseAudio() { 
+      x.pause(); 
+    } 
+
+    var sound =  localStorage.getItem("sound");
+    if(sound=="on"){
+      playAudio();
+    }else{
+      pauseAudio();
+    }
 
     function openFullscreen() {
       if (elem.requestFullscreen) {

@@ -55,7 +55,7 @@
           </h1>
     </div>
     <span class="close-button" onclick="hideGameRules()" style="
-      margin-top: 6%;
+      margin-top: 6%; 
       margin-right: 7%;
     ">×</span>
     </div>
@@ -701,30 +701,6 @@ var selectedPacket = "green";
       var greenPacket = "";
       var yellowPacket = "";
 
-//       if(isSafari){
-//         greenPacket =         `
-//         <iframe src="game.html?packet=green?stage=ios" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;">
-//     Your browser doesn't support iframes
-// </iframe>
-//         `
-//          yellowPacket =         `
-//         <iframe src="game.html?packet=yellow?stage=ios" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden;">
-//     Your browser doesn't support iframes
-// </iframe>
-//         `
-//       }else{
-//          greenPacket =         `
-//         <iframe src="game.html?packet=green?stage=android" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
-//     Your browser doesn't support iframes
-// </iframe>
-//         `
-//          yellowPacket =         `
-//         <iframe src="game.html?packet=yellow?stage=android" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
-//     Your browser doesn't support iframes
-// </iframe>
-//         `
-//       }
-
       if(isSafari){
         if(selectedPacket == "green"){
           window.open("https://pundirmr.github.io/PulseCatchG/game.html?packet=green","_self");
@@ -734,12 +710,12 @@ var selectedPacket = "green";
       }else{
         greenPacket =
       `<iframe src="game.html?packet=green" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
-    Your browser doesn't support iframes
-</iframe>`
+        Your browser doesn't support iframes
+      </iframe>`
          yellowPacket =
          `<iframe src="game.html?packet=yellow" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
-    Your browser doesn't support iframes
-</iframe>`
+        Your browser doesn't support iframes
+      </iframe>`
 
         document.getElementById("iframeDisplay").style.display = "block";
         //document.getElementById("packetValue").innerHTML = selectedPacket;
@@ -755,9 +731,6 @@ var selectedPacket = "green";
       document.getElementById("register").style.display = "none";
       }
 
-
-
-     //openFullscreen();
     }
 
     function receiveMessage(event){
@@ -797,9 +770,9 @@ function playAgain(){
   displayIframe();
 
   if(sound){
-            playAudio();
+      playAudio();
   }else{
-            pauseAudio();
+      pauseAudio();
   }
 }
 
@@ -877,7 +850,7 @@ var scoreListRef = new Firebase('https://pulse-68b64-default-rtdb.firebaseio.com
   usernumber=number;
   usercity =city;
   
-      var userScoreRef = scoreListRef.child(name);
+    var userScoreRef = scoreListRef.child(name);
 
       // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
       // userScoreRef.setWithPriority({ name:name, age:age, email:email, number:number,city:city, score:0 }, name);

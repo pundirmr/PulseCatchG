@@ -152,26 +152,15 @@
     }
     
     function playAgain(){
-        window.open("https://pundirmr.github.io/PulseCatchG/game.html?packet="+userSelectedPacket,"_self");
+        window.open("https://pundirmr.github.io/PulseCatchG/");
     }
-
-
-        var isSafari;
-      
-        isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
-        navigator.userAgent &&
-        navigator.userAgent.indexOf('CriOS') == -1 &&
-        navigator.userAgent.indexOf('FxiOS') == -1;
-      
+     
         window.addEventListener("message", function( e ) {
           console.log('oriitn');
           window.orientation = e.data.orientation;
         }, false);
       
-      
-      if(isSafari){
-      
-          function openFullscreen() {
+        function openFullscreen() {
             if (elem.requestFullscreen) {
             elem.requestFullscreen();
             } else if (elem.webkitRequestFullscreen) { /* Safari */
@@ -231,8 +220,6 @@
             }
         };
     
-      }
-    
         window.addEventListener("resize", checkOrientation, false);
         window.addEventListener("orientationchange", checkOrientation, false);
       
@@ -245,7 +232,8 @@
             }
         };
 
-            
+        openFullscreen(); 
+        
       function addLeaderBoardData(_score){
             var userScoreRef = scoreListRef.child(username);
             // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
