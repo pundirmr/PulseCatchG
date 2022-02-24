@@ -882,9 +882,9 @@ var scoreListRef = new Firebase('https://pulse-68b64-default-rtdb.firebaseio.com
     userScoreRef.setWithPriority({ name:username, age:age, number:number,city:city, score:0 }, username);
 
     localStorage.setItem("name", username);
-    localStorage.setItem("age", age);
-    localStorage.setItem("number", number);
-    localStorage.setItem("city", city);
+    localStorage.setItem("age", userage);
+    localStorage.setItem("number", usernumber);
+    localStorage.setItem("city", usercity);
 }
 
 function addLeaderBoardData(_score){

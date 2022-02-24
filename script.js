@@ -55,7 +55,9 @@ function preload() {
   //console.log('received stage is :' + data.stage);
 
   userSelectedPacket = data.packet;
-
+  if(isSafari){
+    window.scrollTo(0,1);
+  }
 }
 let bgc;
 var initBowl = true;
