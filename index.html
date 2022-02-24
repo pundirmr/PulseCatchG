@@ -513,6 +513,7 @@ z-index: 999999;
 
 <script>
 var elem = document.documentElement;
+localStorage.setItem("sound", "on");
 var canRegister = true;
 function showModel(){
   document.getElementById("privacyPolicy").style.display = "block";
@@ -899,10 +900,12 @@ var x = document.getElementById("myAudio");
 
 function playAudio() { 
   x.play(); 
+  localStorage.setItem("sound", "on");
 } 
 
 function pauseAudio() { 
   x.pause(); 
+ localStorage.setItem("sound", "off");
 } 
 
 // $(function() {

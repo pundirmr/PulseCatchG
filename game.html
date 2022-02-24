@@ -10,10 +10,53 @@
     <script src="p5.js"></script>
     <script src="p5.sound.js"></script>
 <script src="p5.play.js"></script>
+  </head>
+  <body>
+    <script src="script.js"></script>
+    <audio id="myAudio">
+      <source src="a.mp3" type="audio/mpeg">
+    </audio>
+    <div id="portrait" class="portrait"></div>
+  </body>
 
+  <style>
+    .portrait {
+  /* The image used */
+  background-image: url("OnlyBg.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: none;
+  z-index: 99999999999;
+}
+
+  </style>
 
 <script>
   var elem = document.documentElement;
+
+  var x = document.getElementById("myAudio"); 
+
+  function playAudio() { 
+    x.play(); 
+  } 
+
+  function pauseAudio() { 
+    x.pause(); 
+  } 
+
+  var sound =  localStorage.getItem("sound");
+  if(sound=="on"){
+    playAudio();
+  }else{
+    pauseAudio();
+  }
+
   var isSafari;
 
   isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
@@ -93,31 +136,7 @@ window.addEventListener("resize", checkOrientation, false);
       }
   };
 
+
 </script>
-
-
-  </head>
-  <body>
-    <script src="script.js"></script>
-    <div id="portrait" class="portrait"></div>
-  </body>
-
-  <style>
-    .portrait {
-  /* The image used */
-  background-image: url("OnlyBg.jpg");
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: block;
-  z-index: 99999999999;
-}
-
-  </style>
 
 </html>
