@@ -18,13 +18,17 @@
     <div id="div1"> 
         <img src="GameOver.jpg"/> 
       </div> 
-
+      <div id="portrait" class="portrait"></div>
       <div id="gameOverText" class="gameOverText">Game Over</div>
       <div class="playAgain" type="button" onclick="playAgain()" ></div>
       <div class="share" type="button" onclick="onShare()" ></div>
 </body>
 
 <style>
+
+    body{
+        background-color: #202020;
+    }
     div
     {
 
@@ -76,6 +80,21 @@
     background-color: transparent;
     z-index: 999;
     }  
+
+ .portrait {
+  /* The image used */
+  background-image: url("OnlyBg.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: none;
+  z-index: 50;
+}
 
 
 
