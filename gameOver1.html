@@ -21,18 +21,18 @@
 
       <div id="gameOverText" class="gameOverText">Game Over</div>
       <div class="playAgain" type="button" onclick="playAgain()" ></div>
-      <div class="share" type="button" onclick="share()" ></div>
+      <div class="share" type="button" onclick="onShare()" ></div>
 </body>
 
 <style>
     div
     {
-      width:100%;
-      height:100px;
+
     }
     img
     {
       width:100%;
+      height: 100%;
     }
 #div1 {
     z-index: 10;
@@ -45,16 +45,14 @@
   
     #gameOverText
     {
-    font-family: myFirstFont;
-    position: relative;  
-    margin-top: 19%;
-
+        font-family: myFirstFont;
+    position: absolute;
+    margin-top: -23%;
     z-index: 20;
     color: #fff;
     font-weight: bold;
     margin-left: 10%;
     width: 47%;
-
     font-size: 72px;
     text-shadow: -2px 2px black;
     outline: none;
@@ -63,17 +61,19 @@
     }
 
     .playAgain {
-    width: 100%;
-    position: relative;
-    margin-top: 9%;
-    background-color: #ff0e0e;
+        height: 16%;
+    width: 82%;
+    position: absolute;
+    margin-top: -9%;
+    background-color: transparent;
     z-index: 999;
     }   
     .share {
-    width: 100%;
-    position: relative;
+        height: 22%;
+    width: 82%;
+    position: absolute;
     margin-top: -21%;
-    background-color: #0eff7a;
+    background-color: transparent;
     z-index: 999;
     }  
 
@@ -82,6 +82,11 @@
 </style>
 
 <script>
+           var username =  localStorage.getItem("name");
+            var userage =  localStorage.getItem("age");
+            var usernumber =  localStorage.getItem("number");
+            var usercity =  localStorage.getItem("city");
+            var userscore;
         var elem = document.documentElement;
     // Create our Firebase reference
         var scoreListRef = new Firebase('https://pulse-68b64-default-rtdb.firebaseio.com/');
@@ -96,21 +101,10 @@
     
         const s = urlParams.get('score')
         var score = s;
-    
+        userscore = score;
       document.getElementById("gameOverText").innerHTML = "Score : " + score;
     
       function addLeaderBoardData(_score){
-            var username =  localStorage.getItem("name");
-            var userage =  localStorage.getItem("age");
-            var usernumber =  localStorage.getItem("number");
-            var usercity =  localStorage.getItem("city");
-    
-            console.log('add leaderboard data:');
-            console.log('username:' + username);
-            console.log('userage:' + userage);
-            console.log('usernumber:' + usernumber);
-            console.log('usercity:' + usercity);
-    
             var userScoreRef = scoreListRef.child(username);
             // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
             userScoreRef.setWithPriority({ name:username, age:userage, number:usernumber,city:usercity, score:_score}, _score);
