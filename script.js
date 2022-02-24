@@ -275,7 +275,9 @@ function draw() {
     text("GAME OVER",50,300);
     noLoop();
     if(isSafari){
-      window.open("https://pundirmr.github.io/PulseCatchG/gameOver.html?packet="+userSelectedPacket +"&score="+count,"_self");
+      var encodeScore1 = window.btoa(count);
+
+      window.open("https://pundirmr.github.io/PulseCatchG/gameOver.html?packet="+userSelectedPacket +"&score="+encodeScore1,"_self");
     }else{
       parent.window.postMessage("score:" + count , "*");
       parent.window.postMessage("removetheiframe", "*");
@@ -288,7 +290,9 @@ function draw() {
       text("GAME OVER",50,300);
       noLoop();
       if(isSafari){
-        window.open("https://pundirmr.github.io/PulseCatchG/gameOver.html?packet="+userSelectedPacket +"&score="+count,"_self");
+        var encodeScore2 = window.btoa(count);
+
+        window.open("https://pundirmr.github.io/PulseCatchG/gameOver.html?packet="+userSelectedPacket +"&score="+encodeScore2,"_self");
       }else{
         parent.window.postMessage("score:" + count , "*");
         parent.window.postMessage("removetheiframe", "*");

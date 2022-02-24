@@ -124,11 +124,13 @@
         // shirt
     
         const s = urlParams.get('score')
+
+        var decodeScore = window.atob(s);
         var score = s;
         userscore = score;
-      document.getElementById("gameOverText").innerHTML = "Score : " + score;
 
-    
+        document.getElementById("gameOverText").innerHTML = "Score : " + score;
+
     function onShare(){
         const title = 'Pulse';
     
