@@ -127,15 +127,7 @@
         var score = s;
         userscore = score;
       document.getElementById("gameOverText").innerHTML = "Score : " + score;
-    
-      function addLeaderBoardData(_score){
-            var userScoreRef = scoreListRef.child(username);
-            // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
-            userScoreRef.setWithPriority({ name:username, age:userage, number:usernumber,city:usercity, score:_score}, _score);
-        }
-    
-      addLeaderBoardData(parseInt(score));
-    
+
     
     function onShare(){
         const title = 'Pulse';
@@ -252,6 +244,16 @@
                 window.scrollTo(0,1);
             }
         };
+
+            
+      function addLeaderBoardData(_score){
+            var userScoreRef = scoreListRef.child(username);
+            // Use setWithPriority to put the name / score in Firebase, and set the priority to be the score.
+            userScoreRef.setWithPriority({ name:username, age:userage, number:usernumber,city:usercity, score:_score}, _score);
+        }
+    
+      addLeaderBoardData(parseInt(score));
+    
     
       </script>
 
